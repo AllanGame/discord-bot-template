@@ -19,8 +19,8 @@ but first modify the src/utils/data.json
 ```
 
 ## Features
-  - **MongoDB**
-  - **Multilanguage**
+  -  MongoDB
+  - Multilanguage
   - Command aliases
   - Command cooldown
   - Command permissions

@@ -9,7 +9,7 @@ module.exports = {
     run: (client, message, args, storage) => {
 
       // the best help command 👍
-      message.channel.send(client.commands)
+      message.channel.send(client.commands);
 
     }
-  }
+  };

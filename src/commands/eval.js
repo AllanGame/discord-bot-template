@@ -10,7 +10,9 @@ module.exports = {
 	run: (client, message, args, storage) => {
 		const Discord = require("discord.js");
 		const code = args.join(" ");
-		if (!args[0]) return message.channel.send(`What will you evaluate, ${message.member}?`);
+		if (!args[0]) {
+				return message.channel.send(`What will you evaluate, ${message.member}?`);
+		}
 
 			let limit = 980;
 
@@ -38,28 +40,25 @@ module.exports = {
             .addField("Output", output);
 					}
 				}
-				return e;
 			}
 			try {
 				let evalued = eval(code);
 				let evaltype = typeof(evalued);
 				let evalTypeSplitted = evaltype.split("");
 				let evalType = evalTypeSplitted[0].toUpperCase() + evalTypeSplitted.slice(1).join("");
-				if (typeof(evalued) !== "string" ? evalued = require("util").inspect(evalued, {
-						depth: 0
-					}) : evalued);
+				if (typeof(evalued) !== "string" ? evalued = require("util").inspect(evalued, { depth: }) : evalued);
 				const txt = "" + evalued;
 				if (txt.length > limit) {
-					message.channel.send(embed(evalcode(code), evalcode(txt.slice(0, limit)), evalType, "GREEN", "Evaluation", true, false));
-					storage.Log.log(txt);
+					message.channel.send(embed(evalCode(code), evalCode(txt.slice(0, limit)), evalType, "GREEN", "Evaluation", true, false));
+					console.log(txt);
 				}
 				else {
-					message.channel.send(embed(evalcode(code), evalcode(txt), evalType, "GREEN", "Evaluation", false, false));
+					message.channel.send(embed(evalCode(code), evalCode(txt), evalType, "GREEN", "Evaluation", false, false));
 				}
 			}
 			catch (err) {
 				const errType = err.toString().split(":")[0];
-				message.channel.send(embed(evalcode(code), evalcode(err), errType, "RED", "Wrong evaluation", false, true));
+				message.channel.send(embed(evalCode(code), evalCode(err), errType, "RED", "Wrong evaluation", false, true));
 			}
 		}
 };

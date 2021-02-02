@@ -3,7 +3,7 @@ module.exports = (client, message) =>  {
     var Discord = require("discord.js");
     var GuildSchema = require("../models/guild.js");
     var UserSchema = require("../models/user.js");
-    let misc = require('../utils/misc.json')
+    let misc = require("../utils/misc.json")
     let args = message.content.split(" ");
 
     // check if the user is in the database, if not add it
@@ -11,7 +11,7 @@ module.exports = (client, message) =>  {
         userID: message.author.id
     }, (err, user) => {
         if(err) {
-            console.error(err);
+            console.log(err);
         }
 
         if(!user) {
@@ -33,14 +33,16 @@ module.exports = (client, message) =>  {
             .setFooter(lang.embed.footer)
             .setTimestamp();
 
-        if(message.channel.type == 'dm') return;
+        if(message.channel.type === "dm"){
+          return;
+        }
 
     // check if the guild is in the database, if not add it
         GuildSchema.findOne({
             guildID: message.guild.id
         }, (err, guild) => {
             if(err) {
-                console.error(err);
+                console.error();(err);
             }
 
 
@@ -145,7 +147,7 @@ module.exports = (client, message) =>  {
                     client.cooldowns.set(`${message.author.id}.${cmd.name}`, endCooldown);
                 } catch(err) {
                     message.channel.send(errorEmbed);
-                    console.error(err);
+                    console.log(err);
                     client.channels.resolve("your-channel-id").send(`error \`${cmd.name}\`. for more information check console.\n` + "```js\n" + err + "```");
                 }
             }
