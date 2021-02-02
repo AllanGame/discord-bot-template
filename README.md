@@ -19,10 +19,10 @@ but first modify the src/utils/data.json
 ```
 
 ## Features
-- **MongoDB**
-- **Multilanguage**
-- Command aliases
-- Command cooldown
-- Command permissions
-- Only dev command option
-- Only owner command option
+-  **MongoDB**
+-  **Multilanguage**
+-  Command aliases
+-  Command cooldown
+-  Command permissions
+-  Only dev command option
+-  Only owner command option

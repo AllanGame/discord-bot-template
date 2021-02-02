@@ -11,13 +11,13 @@ client.cooldowns = new Discord.Collection();
 
 fs.readdir(__dirname + "/commands", (err, files) => {
     if(err) {
-        console.error(err);
+        console.log(err);
         return;
     }
 
     let jsfiles = files.filter((f) => f.split(".").pop() === "js");
     if(jsfiles.length < 0) {
-        Log.log("[WARN] No commands to load.");
+        console.log("[WARN] No commands to load.");
         return;
     }
 
@@ -26,7 +26,6 @@ fs.readdir(__dirname + "/commands", (err, files) => {
     jsfiles.forEach((f, i) => {
         let fileName = f.substring(0, f.length - 3);
         let fileContents = require("./commands/" + f);
-        console.log(`Command ${f} loaded`);
         client.commands.set(fileName, fileContents);
         delete require.cache[require.resolve(`./commands/${fileName}.js`)];
     });
@@ -52,7 +51,7 @@ mongoose.connect(uri, {
     useFindAndModify: false
 }, function(err) {
     if(err) {
-        console.error(`[ERROR] Error trying to connect to the database .\n${err}`);
+        console.log(`[ERROR] Error trying to connect to the database .\n${err}`);
         process.exit(1);
         return;
     }
@@ -63,5 +62,5 @@ mongoose.connect(uri, {
 client.login(data.token.discord).then(() => {
     console.log(`[INFO] Logged in ${client.user.tag}.`);
 }).catch((err) => {
-    console.error(`[ERROR] Can't login. \n${err}`);
+    console.log(`[ERROR] Can't login. \n${err}`);
 });

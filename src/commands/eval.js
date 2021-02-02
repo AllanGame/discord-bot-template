@@ -10,15 +10,11 @@ module.exports = {
 	run: (client, message, args, storage) => {
 		const Discord = require("discord.js");
 		const code = args.join(" ");
-		if (!args[0]) {
-			message.channel.send(`What will you evaluate, ${message.member}?`);
-		}
-		else {
+		if (!args[0]) return message.channel.send(`What will you evaluate, ${message.member}?`);
+
 			let limit = 980;
 
-			function evalcode(output) {
-				return `\`\`\`js\n${output}\n\`\`\``;
-			}
+			function evalCode(output) { return `\`\`\`js\n${output}\n\`\`\``; }
 
 			function embed(input, output, type, color, footer, large, error) {
 				const e = new Discord.MessageEmbed().setAuthor(`Evaluated by ${message.author.username}`, `${message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })}`).setFooter(`${footer}`, `${client.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })}`).setColor(color);
@@ -66,5 +62,4 @@ module.exports = {
 				message.channel.send(embed(evalcode(code), evalcode(err), errType, "RED", "Wrong evaluation", false, true));
 			}
 		}
-	}
 };
