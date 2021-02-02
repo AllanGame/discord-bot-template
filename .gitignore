@@ -1,0 +1,6 @@
+node_modules
+.idea
+package-lock.json
+
+# When publishing your project remove this comment, if not, your data.json will be public
+# src/utils/data.json
